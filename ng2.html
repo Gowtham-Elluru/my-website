@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        .game-container{
+            border: 2px solid violet;
+            padding: 20px;
+            margin: 30px auto;
+            width: 300px;
+            border-radius: 5%;
+        }
+        header{
+            text-align: center;
+        }
+        body{
+            background: linear-gradient(
+                to bottom,#0f2027,#203a43,#2c5364);
+            color: white;
+            height: 100vh;
+            text-align: center;
+        }
+        h1{
+            background-color: lightgray;
+            margin: 0;
+            color: black;
+        }
+        button{
+            margin: 12px;
+        }
+        .guess{
+            background-color: lightgreen;
+            cursor: pointer;
+            font-size: 17px;
+        }
+        .guess:hover{
+            background-color: aquamarine;
+        }
+        .restart{
+            background-color: red;
+            cursor: pointer;
+            font-size: 17px;
+            color: white;
+        }
+        .restart:hover{
+            background-color: rgb(237, 61, 61);
+        }
+        .game-container{
+            margin-top: 50px;
+        }
+        input{
+            padding: 4px;
+            padding-right: 19px;
+            padding-left: 15px;
+            font-size: 16px;
+            border: 2px solid blue;
+            border-radius: 10%;
+        }
+        .message{
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        input[type="number"]{
+            border-radius: 6px;
+            padding: 6px;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NUMBER GUESSING GAME</h1>
+        <h2>HARD LEVEL</h2>
+    </header>
+    <main>
+        <div class="game-container">
+            <h3>Guess a number between <strong>1 to 100</strong></h3>
+            <p class="range">( Range: 1 – 100 )</p>
+            <div class="input-section">
+                <label for="guess">Enter your guess:</label>
+                <input type="number" id="guess" placeholder="1-100" min="1" max="100"><br>
+                <button class="guess">Guess</button>
+            </div>
+            <p class="message">Start guessing...</p>
+            <p>Attempts: <span>0</span></p>
+            <p>Min Score: <span id="minScore">-</span></p>
+            <p>Max Score: <span id="maxScore">-</span></p>
+
+            <button class="restart">Restart Game</button>
+        </div>
+    </main>
+    <script>
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        var btn = document.querySelector(".guess");
+        var message = document.querySelector(".message");
+        let attempts = 0;
+        var rb = document.querySelector(".restart");
+        var ad = document.querySelector("p span");
+        let mins = 101;
+        let maxs = 0;
+        var mn = document.querySelector("#minScore");
+        var mx = document.querySelector("#maxScore");
+        btn.addEventListener("click",function(){
+            var g = document.querySelector("#guess").value;
+            g = parseInt(g);
+            if(isNaN(g)){
+                message.innerText = "❌ Please enter a number";
+                return;
+            }
+            if(g<1 || g>100){
+                message.innerText = "⚠️ Enter a number between 1 and 10";
+                return;
+            }
+            attempts++;
+            ad.innerText = attempts;
+            if(secretNumber===g){
+                message.innerText = "🎉 Correct! You won the game";
+                btn.disabled = true;
+                if(attempts<mins){
+                    mins = attempts;
+                    mn.innerText = mins; 
+                }
+                if(attempts>maxs){
+                    maxs = attempts;
+                    mx.innerText = maxs; 
+                }
+            }else if(g>secretNumber){
+                message.innerText = "⬆️ Too High! Try again";
+            }else if(g<secretNumber){
+                message.innerText = "⬇️ Too Low! Try again";
+            }
+        });
+        rb.addEventListener("click",function(){
+            secretNumber = Math.floor(Math.random() * 10) + 1;
+            btn.disabled = false;
+            attempts = 0;
+            ad.innerText = 0;
+            document.querySelector("#guess").value = "";
+            message.innerText = "Start guessing...";
+        });
+        
+    </script>
+</body>
+</html>

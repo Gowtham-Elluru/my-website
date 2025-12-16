@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section{
+            margin: 10px;
+        }
+        button a{
+            text-decoration: none;
+            color: black;
+        }
+        header{
+            position: fixed;
+            top: 0;
+            height: 5vh;
+            color: white;
+        }
+        main{
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,#0f2027,#203a43,#2c5364);
+            display: flex;
+            flex-direction: column;
+            justify-content: safe;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        body{
+            margin: 0;
+            text-align: center;
+        }
+        footer{
+            height: 15vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            flex-wrap: wrap;
+        }
+        button{
+            color: black;
+            border: 2px solid blue;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: aqua;
+        }
+        .d{
+            margin-top: 70px;
+            color: white;
+        }
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-c{
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            border-radius: 8px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            z-index: 10;
+            border: 3px solid violet;
+        }
+
+        .dropdown-c a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+        }
+
+        .dropdown-c a:hover {
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav><h2>Gowtham Elluru</h2></nav>
+    </header>
+    <main>
+        <section class="d">
+            <u><h2>DASHBOARD</h2></u>
+        </section>
+        <section>
+            <button>
+                <h3>RESUME</h3>
+            </button>
+        </section>
+        <section>
+            <button><a href="portfolio.html">
+                <h3>PORT FOLIO</h3></a>
+            </button>
+        </section>
+        <section class="docu">
+            <button id="imp"><h3>
+                IMPORTANT DOCUMENTS</h3>
+            </button>
+        </section>
+        <section>
+            <button><a href="calc.html">
+                <h3>MINI CALCULATOR</h3></a>
+            </button>
+        </section>
+        <section class="dropdown">
+            <button id="game">
+                <h3>Games ▼</h3>
+            </button>
+            <div class="dropdown-c">
+                <a href="ng1.html">Easy Level</a>
+                <a href="ng2.html">Hard Level</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h5> @ 2026 rights reserved to gowtham elluru</h5>
+    </footer>
+    <script>
+        var a = document.querySelector(".docu");
+        var imp = document.getElementById("imp");
+        imp.addEventListener("click",function(){
+            var password = prompt("Enter password to access Important Documents:");
+            if(password==="9989413669"){
+                alert("Password Correct ✅, Access granted");
+                window.location.href = "imp_docs - Copy.html";
+            }else{
+                alert("❌ Wrong password. Access denied!");
+            }
+        });
+        var game = document.getElementById("game");
+        var ddown = document.querySelector(".dropdown-c");
+        game.addEventListener("click",function(){
+            ddown.style.display = ddown.style.display==="block"? "none":"block";
+        })
+    </script>
+</body>
+</html>

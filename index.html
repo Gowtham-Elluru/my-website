@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gowtham Elluru</title>
+    <style>
+        h1{
+            border: 2px solid white;
+            margin: 5px;
+            background-color: lightgray;
+            border-radius: 10px;
+            color: black;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        body{
+            text-align: center;
+            margin: 0;
+        }
+        button a{
+            text-decoration: none;
+        }
+        input{
+            border: 2px solid black;
+            border-radius: 5px;
+        }
+        section{
+            border: 2px solid white;
+            padding-bottom: 25px;
+            border-radius: 5%;
+            margin: 5px;
+        }
+        main{
+            background: linear-gradient(
+                to bottom,#0f2027,#203a43,#2c5364);
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            color: white;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+        .sub{
+            color: blue;
+            text-decoration: none;
+        }
+        .res{
+            color: red;
+        }
+        form{
+            font-weight: bold;
+            margin: 15px;
+        }
+        button{
+            margin-top: 20px;
+            margin-right: 15px;
+            font-weight: bold;
+            border: 2px solid black;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+        .sub:hover{
+            background-color: greenyellow;
+        }
+        .res:hover{
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+    </header>
+
+    <main>
+        <section>
+            <h1>Login Page</h1>
+            <form id="loginform">
+                <label for="username">Enter your Username :</label>
+                <input type="text" id="username" placeholder="Username" required>
+                <br><br>
+                <label for="password">Enter your Password :</label>
+                <input type="password" id="password" placeholder="Password" required>
+                <br><br>
+            <button class="sub" type="submit">Submit</button>
+            <button class="res" type="reset">Reset</button>
+            </form>
+        </section>
+        <script>
+            const form = document.getElementById("loginform");
+            form.addEventListener("submit",function(event){
+                event.preventDefault();
+                let username = document.getElementById("username").value;
+                let password = document.getElementById("password").value;
+                if(username==="" || password===""){
+                    alert("Please fill details to continue");
+                }else if(username=="gowtham" && password=="12345"){
+                    alert("Password Correct ✅, Access granted");
+                    window.location.href = "dashboard.html";
+                }else{
+                    alert("❌ Incorrect details");
+                }
+            });
+        </script>
+    </main>
+</body>
+</html>

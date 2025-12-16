@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h3{
+            font-size: 25px;
+            color: white;
+        }
+        body{
+            margin: 0;
+            text-align: center;
+        }
+        header{
+            position: fixed;
+            top: 0;
+            height: 5vh;
+            color: white;
+        }
+        main{
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,#0f2027,#203a43,#2c5364);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        button{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 260px;
+            padding: 10px 15px;
+            border: 2px solid blue;
+            border-radius: 9px;
+            cursor: pointer;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button:hover{
+            background-color: aqua;
+        }
+        section{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav><h2>Gowtham Elluru</h2></nav>
+    </header>
+    <main>
+        <section>
+            <nav><h3><u>My Important Documents</u></h3></nav>
+        </section>
+        <section>
+            <button class="btn" data-file="aadhar.jpg">
+                <span>Aadhar Card</span>
+                <span class="download">⬇️</span>
+            </button>
+            <button class="btn" data-file="income.jpg">
+                <span>Income Certificate</span>
+                <span class="download">⬇️</span>
+            </button>
+            <button class="btn" data-file="caste.jpg">
+                <span>Caste Certificate</span>
+                <span class="download">⬇️</span>
+            </button>
+            <button class="btn" data-file="ews.jpg">
+                <span>EWS Certificate</span>
+                <span class="download">⬇️</span>
+            </button>
+        </section>
+    </main>
+    <script>
+        const buttons = document.querySelectorAll(".btn");
+        buttons.forEach(function(button){
+            button.addEventListener("click",function(){
+                const file = button.getAttribute("data-file");
+                const link = document.createElement("a");
+                link.href = file;
+                link.download = file;
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>

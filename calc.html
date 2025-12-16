@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            font-weight: bold;
+
+        }
+        body{
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background: linear-gradient(
+                to bottom,#0f2027,#203a43,#2c5364);
+        }
+
+        header{
+            display: flex;
+            padding: 0 12px;
+            min-height: 80px;
+            height: 80px;
+            width: 20vw;
+            min-width: 300px;
+            border: 2px solid violet;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            background: white;
+            font-size: 40px;
+            align-items: center;
+            justify-content: flex-start;
+            line-height: 80px;
+        }
+
+        main{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section{
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        div{
+            display: flex;
+            width: 65px;
+            height: 65px;
+            border: 2px solid blue;
+            border-radius: 50%;
+            margin: 4px;
+            justify-content: center;
+            align-items: center;
+            background-color: beige;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        div:hover{
+            background-color: aqua;
+
+        }
+
+        .equal{
+            background-color: greenyellow;
+        }
+
+        .equal:hover{
+            background-color: chartreuse;
+            color: black;
+        }
+
+        .wrong{
+            background-color: rgb(251, 5, 5);
+            color: white;
+        }
+
+        .wrong:hover{
+            background-color: rgb(238, 97, 102);
+            color: white;
+        }
+
+        h2{
+            margin: 0;
+            padding: 0;
+        }
+        button{
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+        .ca{
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <u><h2 class="ca">CALCULATOR</h2></u>
+    
+    <header> </header>
+
+    <main>
+        <section>
+            <button><div><h2>%</h2></div></button>
+            <button><div><h2>/</h2></div></button>
+            <button><div><h2>x</h2></div></button>
+            <button><div class="wrong"><h2>C</h2></div></button>
+        </section>
+
+        <section>
+            <button><div><h2>7</h2></div></button>
+            <button><div><h2>8</h2></div></button>
+            <button><div><h2>9</h2></div></button>
+            <button><div><h2>*</h2></div></button>
+        </section>
+
+        <section>
+            <button><div><h2>4</h2></div></button>
+            <button><div><h2>5</h2></div></button>
+            <button><div><h2>6</h2></div></button>
+            <button><div><h2>-</h2></div></button>
+        </section>
+
+        <section>
+            <button><div><h2>1</h2></div></button>
+            <button><div><h2>2</h2></div></button>
+            <button><div><h2>3</h2></div></button>
+            <button><div><h2>+</h2></div></button>
+        </section>
+
+        <section>
+            <button><div><h2>N</h2></div></button>
+            <button><div><h2>0</h2></div></button>
+            <button><div><h2>.</h2></div></button>
+            <button><div class="equal"><h2>=</h2></div></button>
+        </section>
+    </main>
+    <script>
+        var display = document.querySelector("header");
+        var buttons = document.querySelectorAll("button");
+        buttons.forEach(function(btn){
+            btn.addEventListener("click",function(){
+                var value = btn.innerText.trim();
+                if(!isNaN(value)){
+                    display.innerText += value;
+                }
+                if(value=="C"){
+                    display.innerText = "";
+                }
+                if(value==="x"){
+                    var curr = display.innerText;
+                    display.innerText = curr.slice(0,-1);
+                    return;
+                }
+                if(value==="+" || value==="-" || value==="/" || value==="*"){
+                    var curr = display.innerText;
+                    if(curr==="" && value==="-"){
+                        display.innerText = "-";
+                        return;
+                    }
+                    var last = curr.slice(-1);
+                    if("+-*/".includes(last)){
+                        display.innerText = curr.slice(0,-1) + value;
+                    }else{
+                        display.innerText += value;
+                    }
+                }
+                if(value==="%"){
+                    var curr = display.innerText;
+                    if(curr===""){
+                        return;
+                    }
+                    var i = curr.length-1;
+                    while(i>=0 && "0123456789".includes(curr[i])){
+                        i--;
+                    }
+                    var lastnumber = curr.slice(i+1);
+                    if(lastnumber===""){
+                        return;
+                    }
+                    var percentValue = parseFloat(lastnumber)/100;
+                    display.innerText = curr.slice(0,i+1) + percentValue;
+                    return;
+                }
+                if(value==="."){
+                    var curr = display.innerText;
+                    if(curr===""){
+                        display.innerText = "0.";
+                        return;
+                    }
+                    var i = curr.length-1;
+                    while(i>=0 && "0123456789.".includes(curr[i])){
+                        i--;
+                    }
+                    var lastnumber = curr.slice(i+1);
+                    if(lastnumber.includes(".")){
+                        return;
+                    }
+                    if(lastnumber===""){
+                        display.innerText+="0.";
+                    }else{
+                        display.innerText+=".";
+                    }
+                    return;
+                }
+                if(value==="="){
+                    var curr = display.innerText;
+                    if(curr===""){
+                        return;
+                    }
+                    try{
+                        var result = Function("return "+curr)();
+                        display.innerText = result;
+                    }catch(e){
+                        display.innerText = "Error";
+                    }
+                    return;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
